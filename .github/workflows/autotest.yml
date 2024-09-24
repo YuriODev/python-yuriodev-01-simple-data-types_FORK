@@ -21,11 +21,12 @@ jobs:
     name: Set Up Python Build
     uses: ./.github/workflows/setup-python-reusable.yml
     with:
-      python_version: ${{ inputs.PYTHON_VERSION }}
+      python_version: ${{ env.PYTHON_VERSION }}
 
   determine-changes:
     name: Determine Changed Exercises
-    needs: build
+    needs: 
+      - build
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.set-matrix.outputs.matrix }}
@@ -76,7 +77,7 @@ jobs:
 
   tests:
     name: Run Tests
-    needs:
+    needs: 
       - build
       - determine-changes
     runs-on: ubuntu-latest

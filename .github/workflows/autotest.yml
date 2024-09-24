@@ -95,10 +95,19 @@ jobs:
       matrix:
         exercise: ${{ fromJson(needs.determine-changes.outputs.matrix) }}
     steps:
-      - name: Setup Python Environment
-        uses: ./.github/workflows/setup-python-reusable.yml
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
-          python_version: '3.11'
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
       - name: Run Test for Exercise ${{ matrix.exercise }}
         run: |

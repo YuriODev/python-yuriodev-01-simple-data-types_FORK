@@ -76,7 +76,9 @@ jobs:
 
   tests:
     name: Run Tests
-    needs: build, determine-changes
+    needs:
+      - build
+      - determine-changes
     runs-on: ubuntu-latest
     if: needs.determine-changes.outputs.matrix != '[]'
     strategy:

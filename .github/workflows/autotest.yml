@@ -21,7 +21,7 @@ jobs:
     name: Set Up Python Build
     uses: ./.github/workflows/setup-python-reusable.yml
     with:
-      python_version: ${{ env.PYTHON_VERSION }}
+      python_version: ${{ inputs.PYTHON_VERSION }}
 
   determine-changes:
     name: Determine Changed Exercises

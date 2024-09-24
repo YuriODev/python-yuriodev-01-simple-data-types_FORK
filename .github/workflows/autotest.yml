@@ -16,7 +16,7 @@ on:
 jobs:
   build:
     name: Set Up Python Build
-    uses: ./.github/workflows/setup-python-reusable.yml
+    uses: ./.github/workflows/setup-python-reusable.yml@main
     with:
       python_version: '3.11'
 

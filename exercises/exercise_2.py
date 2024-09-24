@@ -1,2 +1,5 @@
-# Exercise 2
-# Your solution comes here
+# Read the input
+n = int(input())
+
+# Calculate and print the next even number
+print(n + 2 - n % 2)

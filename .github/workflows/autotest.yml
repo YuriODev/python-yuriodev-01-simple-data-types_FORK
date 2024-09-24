@@ -11,8 +11,29 @@ on:
       - main
     paths:
       - 'exercises/**'
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
 
 jobs:
+  build:
+    name: Build Site
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+
   determine-changes:
     name: Determine Changed Exercises
     runs-on: ubuntu-latest
@@ -72,20 +93,6 @@ jobs:
       matrix:
         exercise: ${{ fromJson(needs.determine-changes.outputs.matrix) }}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v3
-        with:
-          python-version: '3.11'
-
-      - name: Install Dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-          # Install other dependencies if needed
-
       - name: Run Test for Exercise ${{ matrix.exercise }}
         run: |
           pytest exercises/test_exercise_${{ matrix.exercise }}.py

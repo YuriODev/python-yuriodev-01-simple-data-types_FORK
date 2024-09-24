@@ -31,7 +31,7 @@ jobs:
           git fetch origin ${{ github.event.before }} --depth=1
           CHANGED_FILES=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^exercises/' || true)
           echo "$CHANGED_FILES" >> $GITHUB_ENV
-          echo "CHANGED_FILES=$CHANGED_FILES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
         shell: bash
 
       - name: Extract Changed Exercises

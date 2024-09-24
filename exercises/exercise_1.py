@@ -7,5 +7,3 @@ print(first_part)
 second_part = ((number // 1000) % 10) + ((number // 10) % 10)
 
 print(str(first_part) + str(second_part))
-
-

@@ -6,6 +6,11 @@ on:
       python_version:
         required: true
         type: string
+  workflow_dispatch:
+
+env:
+  PYTHON_VERSION: '3.11'
+
 
 jobs:
   setup-python:

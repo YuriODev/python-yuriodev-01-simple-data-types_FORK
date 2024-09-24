@@ -111,4 +111,4 @@ jobs:
 
       - name: Run Test for Exercise ${{ matrix.exercise }}
         run: |
-          pytest exercises/test_exercise_${{ matrix.exercise }}.py
+          pytest --color=yes --failed-first -x exercises/test_exercise_${{ matrix.exercise }}.py
